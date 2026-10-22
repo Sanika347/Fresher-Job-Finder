@@ -24,6 +24,8 @@ backend/uploads/
 # Personal resumes / scratch directories
 scratch/
 
+
+
 # IDE files
 .vscode/
 .idea/
@@ -41,3 +43,8 @@ backend/src/addon/build/
 build/
 Release/
 Debug/
+# Generated Python metadata
+*.egg-info/
+
+# Personal resume files
+Sanika_Surashe_ResumeBA12oct.pdf*

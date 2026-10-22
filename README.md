@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # fresherjobfinder — Personal Use
 
 A local backend service that scrapes job listings from 25+ major tech companies every 8 hours, matches them against your resume using semantic AI, and emails you the matches.
@@ -191,3 +192,6 @@ Instead of running the server locally, you can automate this pipeline to run eve
    - Select **Read and write permissions** (allows the workflow to commit the updated `jobs.db` database back to Git to persist state).
    - Click **Save**.
 4. **Trigger Manually**: Go to the **Actions** tab, select **Scrape and Match Jobs**, click **Run workflow**, and run it. It will also run automatically every 8 hours.
+=======
+# Fresher-Job-Finder
+>>>>>>> 66c1bd62094c4cebaae704ef74b078deec697fb9
