@@ -1,0 +1,193 @@
+# fresherjobfinder — Personal Use
+
+A local backend service that scrapes job listings from 25+ major tech companies every 8 hours, matches them against your resume using semantic AI, and emails you the matches.
+
+**No UI. Email-only. Runs on your PC.**
+
+---
+
+## Quick Start
+
+```bat
+:: 1. Run setup (installs environment, imports resume, and starts the FastAPI server)
+backend\setup.bat
+
+:: 2. Edit credentials in .env if needed
+notepad backend\.env
+
+:: 3. To restart the server later:
+backend\setup.bat
+```
+
+---
+
+## Configuration (`.env`)
+
+| Variable | Description |
+|---|---|
+| `EMAIL_USER` | Your Gmail address |
+| `EMAIL_PASS` | Gmail App Password ([get one here](https://myaccount.google.com/apppasswords)) |
+| `NOTIFY_EMAIL` | Where to send job digests (usually same as above) |
+| `MATCH_THRESHOLD` | Min match % to notify (default: 40) |
+| `DATA_RETENTION_DAYS` | Days to keep job data (default: 3) |
+| `SCRAPE_INTERVAL_HOURS` | How often to scrape (default: 8) |
+| `USER_YOE` | Your Years of Experience (default: 4) |
+| `MAX_CONCURRENT_COMPANIES` | Max number of companies to scrape concurrently (default: 6) |
+
+---
+
+## Managing Companies (`companies_config.json`)
+
+To enable or disable specific companies without modifying code or restarting the server:
+1. Open `backend/companies_config.json`.
+2. Toggle the `"enabled"` field to `true` or `false` for any company.
+3. Sync the changes to the database by running:
+   ```bash
+   python backend/nlp_service/db_init.py
+   ```
+4. The running backend will automatically pick up the updated list on its next scheduled cycle.
+
+---
+
+## API Reference (use curl or Postman)
+
+### 1. Upload your Resume
+
+```bash
+curl -X POST http://localhost:3000/api/resume/upload \
+  -F "email=you@gmail.com" \
+  -F "resume=@/path/to/resume.pdf"
+```
+
+### 2. Set Company Preferences
+
+```bash
+curl -X POST http://localhost:3000/api/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "you@gmail.com",
+    "selectedCompanies": ["NVIDIA", "Google", "Intel", "Microsoft"],
+    "matchThreshold": 50
+  }'
+```
+
+### 3. Manually Trigger a Scrape
+
+```bash
+curl -X POST http://localhost:3000/api/admin/scrape
+```
+
+### 4. Manually Trigger Matching for Your Email
+
+```bash
+curl -X POST "http://localhost:3000/api/admin/match?email=you@gmail.com"
+```
+
+### 5. Check System Status
+
+```bash
+curl http://localhost:3000/api/admin/status
+```
+
+### 6. View Your Matched Jobs
+
+```bash
+curl "http://localhost:3000/api/matches?email=you@gmail.com"
+```
+
+### 7. Reactivate a Degraded Company
+
+```bash
+curl -X POST "http://localhost:3000/api/admin/activate?company=NVIDIA"
+```
+
+---
+
+## Supported Companies
+
+| Company | ATS / Method | Location Filter |
+|---|---|---|
+| NVIDIA | Workday JSON POST | India + Remote |
+| Arista Networks | SmartRecruiters REST API | India |
+| Cisco Systems | Custom `cisco` API | India |
+| Qualcomm | Eightfold AI pcsx API | India |
+| AMD | iCIMS/Attract GET API | India |
+| Broadcom | Workday JSON POST | India + Remote |
+| Intel | Workday JSON POST | India + Remote |
+| Microsoft | Eightfold AI pcsx API | India |
+| Cloudflare | Greenhouse API | None |
+| NetApp | Eightfold AI v2 API | None |
+| Juniper Networks | Workday JSON POST | None |
+| NXP Semiconductors | Workday JSON POST | None |
+| Cerebras Systems | AshbyHQ API | None |
+| Samsung Research | Workday JSON POST | India + Remote |
+| Graphcore | Greenhouse API | None |
+| Marvell | Workday JSON POST | None |
+| Cadence | Workday JSON POST | None |
+| Silicon Labs | Workday JSON POST | None |
+| Micron | Workday JSON POST | None |
+| Microchip | Workday JSON POST | None |
+| Motorola Solutions | Workday JSON POST | None |
+| Keysight | Jibe API | None |
+| Celestica | SuccessFactors HTML | None |
+| *IBM, Ericsson, HPE, MediaTek, TI, Synopsys* | *(Currently Disabled)* | - |
+
+---
+
+## How It Works
+
+```
+Startup → Scrape all companies → Local Job Embeddings (offline model)
+       → Compare against your resume vector (cosine similarity)
+       → Email matches ≥ threshold % → Repeat every 8 hours
+```
+
+1. **Scraping**: Uses official ATS APIs where available, falls back to JSON-LD structured data or clean widget POST requests.
+2. **Local AI Matching**: Drop up to 4 PDFs (e.g. `cvemb.pdf`, `cvnet.pdf`) in the folder. The system auto-detects them, generates 384-dimensional vectors for full text and Professional Summary, and matches jobs against all active profiles taking the max score. Includes Skills Coverage checking. Matching is pure in-memory math using NumPy.
+3. **Email**: Sent via Gmail SMTP. If it fails, the matches are retried on the next cycle.
+4. **Storage**: Single SQLite file at `backend/data/jobs.db` using Python's native `sqlite3`. Jobs and matches expire after 3 days automatically.
+
+---
+
+## Logs
+
+| File | Contents |
+|---|---|
+| `backend/logs/scrape.log` | Per-company scrape results |
+| `backend/logs/error.log` | HTTP errors, degraded companies |
+| `backend/logs/nlp.log` | Embedding events |
+
+---
+
+## Troubleshooting
+
+**Email not sending?**
+- Make sure you're using a Gmail App Password, not your regular password
+- Enable 2-Step Verification first: [myaccount.google.com/security](https://myaccount.google.com/security)
+
+**No jobs found?**
+- Check `logs/scrape.log` for per-company errors
+- Some companies may be marked `degraded` — use `/api/admin/activate`
+
+**Resume skills seem wrong?**
+- Re-upload with a cleaner PDF (avoid image-only/scanned resumes)
+
+---
+
+## Running on GitHub Actions (Automated)
+
+Instead of running the server locally, you can automate this pipeline to run every 8 hours using GitHub Actions.
+
+### Setup Instructions
+1. **Push Changes to GitHub**: Ensure `.github/workflows/scrape_and_match.yml`, `backend/nlp_service/workflow_runner.py`, and code modifications are pushed to your repository.
+2. **Configure Secrets**: In your GitHub repository settings, go to **Settings** -> **Secrets and variables** -> **Actions** -> **New repository secret** and add:
+   - `EMAIL_USER`: Your Gmail address (sender).
+   - `EMAIL_PASS`: Your 16-character Gmail App Password.
+   - `NOTIFY_EMAIL`: Where you want to receive the digest.
+   - `MATCH_THRESHOLD` (optional, default: `50`): Min cosine similarity percentage.
+   - `DATA_RETENTION_DAYS` (optional, default: `3`): Job retention limit.
+3. **Enable Write Permissions**:
+   - Go to **Settings** -> **Actions** -> **General** -> **Workflow permissions**.
+   - Select **Read and write permissions** (allows the workflow to commit the updated `jobs.db` database back to Git to persist state).
+   - Click **Save**.
+4. **Trigger Manually**: Go to the **Actions** tab, select **Scrape and Match Jobs**, click **Run workflow**, and run it. It will also run automatically every 8 hours.

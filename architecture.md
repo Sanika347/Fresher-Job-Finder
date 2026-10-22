@@ -1,0 +1,272 @@
+# fresherjobfinder — Project Architecture
+
+This document provides a detailed overview of the system architecture, file layout, database schema, processing loops, and execution workflows of the **100% Python fresherjobfinder** application.
+
+---
+
+## 1. System Architecture Overview
+
+The system is designed as a lightweight, high-performance application built entirely on Python. It can run as either a persistent **FastAPI** web server or a serverless pipeline via **GitHub Actions**. It utilizes **SentenceTransformers** for semantic embeddings, **NumPy** for vector arithmetic, and **SQLite** for relational storage.
+
+```mermaid
+graph TD
+    Client[Client / Curl / Frontend] -->|REST API| Gateway[FastAPI Web Server / Pipeline]
+    Gateway -->|Read/Write| DB[(SQLite Database)]
+    Gateway -->|Background Task| Scraper[Job Scraper Engine]
+    Gateway -->|Background Task| Matcher[NumPy Semantic Match Engine]
+    Scraper -->|Extract Text| Embedding[SentenceTransformers Model]
+    Matcher -->|Vector Similarity| Embedding
+    Matcher -->|Dispatch HTML Digest| SMTP[Gmail SMTP Server]
+    SMTP -->|Notification| EmailRec[User's Inbox]
+```
+
+### Key Technical Advantages
+- **Single Runtime**: Eliminates subprocess spawning, inter-process communication latency, and multiple environment setups (0% Node.js/JavaScript).
+- **SIMD Calculations**: Vector similarity math (cosine similarity) is calculated natively at AVX/SSE speeds using **NumPy** array operations.
+- **In-Memory Models**: The `sentence-transformers/all-MiniLM-L6-v2` model is loaded once on startup, providing sub-200ms semantic embedding generation.
+- **Thread-Safe Concurrency**: Background tasks (scraping, matching, and database cleaning) operate concurrently with REST API queries using SQLite connection queue timeouts.
+
+---
+
+## 2. Directory Layout
+
+The simplified, clean directory structure of the application is as follows:
+
+```
+fresherjobfinder/
+├── .github/workflows/
+│   └── scrape_and_match.yml     # GitHub Actions CI/CD pipeline (Runs every 8h)
+├── backend/
+│   ├── data/
+│   │   ├── jobs.db              # SQLite relational database
+│   │   └── skills_vocab.json    # Pre-compiled dictionary of technical skills
+│   ├── nlp_service/
+│   │   ├── adapters/            # Modular ATS scraping logic (workday.py, jibe.py, etc.)
+│   │   ├── app.py               # FastAPI server and REST endpoints entry point
+│   │   ├── workflow_runner.py   # CLI entry point for full pipeline execution
+│   │   ├── scraper.py           # Multi-ATS scraper orchestrator (Network I/O)
+│   │   ├── enricher.py          # NLP embedding generation (CPU-bound)
+│   │   ├── matcher.py           # NumPy-based semantic match calculations
+│   │   ├── email_sender.py      # SMTP-based HTML email digest engine
+│   │   ├── import_resume.py     # PDF resume parser and vectorizer
+│   │   └── requirements.txt     # Python package dependencies
+│   ├── companies_config.json    # User-editable list of active companies
+│   ├── .env                     # Environment variables (Credentials & config)
+│   └── setup.bat                # Windows setup and launch script
+└── Saurabh_Surashe.pdf          # User's PDF resume in workspace root
+```
+
+---
+
+## 3. Database Schema
+
+All data is stored inside `backend/data/jobs.db`. The relational schema comprises four primary tables:
+
+### 3.1. `users` & `user_resumes`
+Tracks registered user profiles and configuration preferences.
+- `email` (TEXT, PRIMARY KEY): Recipient email address.
+- `selected_companies` (TEXT): JSON array of company names selected for matching.
+- `match_threshold` (REAL): Minimum match score (0-100) to notify.
+- `last_notified_at` (TEXT): ISO timestamp of the last successful email digest.
+- `created_at` (TEXT): Account creation timestamp.
+*(Legacy `resume_*` columns remain for backward compatibility but are now superseded).*
+
+**`user_resumes`** (Supports up to 4 resumes per user):
+- `id` (INTEGER, PRIMARY KEY)
+- `email` (TEXT): References `users.email`.
+- `pdf_filename` (TEXT): E.g., `cvemb.pdf`.
+- `slot_label` (TEXT): Auto-derived label (e.g., `Emb`, `Net`).
+- `pdf_hash` (TEXT): MD5 hash for change detection.
+- `resume_vector` (BLOB): Full resume float vector.
+- `resume_summary_vector` (BLOB): Vector of the 'Professional Summary' section.
+- `resume_skills` (TEXT): JSON array of extracted skill tokens.
+
+### 3.2. `companies`
+Lists tracked employers, ATS portals, scraped records, and degradation tracking.
+- `name` (TEXT, PRIMARY KEY): Unique company identifier (e.g., "AMD", "NVIDIA").
+- `ats` (TEXT): Portal type (e.g., "workday", "smartrecruiters", "cisco", "eightfold", "eightfold_v2", "greenhouse", "amd", "ibm", "arm", "jibe", "successfactors", "ti", "mediatek", "avature").
+- `tier` (INTEGER): Priority level for scraping.
+- `career_url` (TEXT): URL to the career home page.
+- `status` (TEXT): Status flags (`active`, `degraded`). Checked via database constraint.
+- `last_scraped_at` (TEXT): ISO timestamp of last run.
+- `degraded_reason` (TEXT): Logs error details if scraper fails.
+
+### 3.3. `jobs`
+Stores scraped job postings, locations, description details, and pre-calculated NLP vectors.
+- `company_name` (TEXT): References `companies.name`.
+- `job_id` (TEXT): ATS unique job ID.
+- `job_title` (TEXT): Clean job title.
+- `location` (TEXT): Job location (e.g., "Pune, IN", "London, UK", etc.).
+- `department` (TEXT): Job department.
+- `posted_date` (TEXT): ISO or relative date.
+- `employment_type` (TEXT): Job type (e.g., "Full-time").
+- `job_description` (TEXT): Clean description text.
+- `url` (TEXT): Link to view details.
+- `apply_url` (TEXT): Direct application link.
+- `skills_display` (TEXT): JSON list of extracted skill keywords.
+- `required_yoe` (INTEGER): Extracted minimum years of experience.
+- `embedding_status` (TEXT): Processing flags (`pending`, `done`, `failed`).
+- `title_vector` (BLOB): Binary numpy byte array embedding representation of the title.
+- `description_vector` (BLOB): Binary numpy byte array embedding representation of the description.
+- `embedding_vector` (BLOB): Binary numpy byte array embedding representation of the combined text.
+- `scraped_at` (TEXT): Timestamp of acquisition.
+- `expires_at` (TEXT): Expire limit based on retention settings.
+- *Primary Key*: `(company_name, job_id)`
+
+### 3.4. `matched_jobs`
+Deduplicates matches and records notification dispatch histories.
+- `email` (TEXT): Recipient user.
+- `job_id` (TEXT): Reference to job.
+- `company_name` (TEXT): Reference to company.
+- `match_score` (REAL): Similarity percentage (0-100).
+- `job_title` (TEXT): Job title at time of match.
+- `location` (TEXT): Location details.
+- `apply_url` (TEXT): Link to apply.
+- `skills_display` (TEXT): JSON list of skills.
+- `required_yoe` (INTEGER): YoE requirement.
+- `notified` (INTEGER): Binary flag (`0` for pending, `1` for sent).
+- `notified_at` (TEXT): ISO timestamp of sent email.
+- `expires_at` (TEXT): Expiration limit.
+- `winning_label` (TEXT): Label of the resume that scored highest.
+- `has_multi` (INTEGER): Flag for multiple active resumes.
+- *Primary Key*: `(email, company_name, job_id)`
+
+---
+
+## 4. Key Application Engines
+
+### 4.1. Execution Gateways (`app.py` & `workflow_runner.py`)
+- **FastAPI Web Server (`app.py`)**:
+  - Exposes REST API endpoints.
+  - Runs background execution pools for tasks like scraping and matching, keeping responses non-blocking.
+  - Implements two background loops on startup:
+    1. **Scraping Loop**: Runs every 8 hours (configurable via `SCRAPE_INTERVAL_HOURS`).
+    2. **Cleanup Loop**: Runs daily at 2:00 AM, purging expired records from the database.
+- **Serverless Pipeline (`workflow_runner.py`)**:
+  - Executes the full data pipeline (init, import, scrape, match, cleanup) sequentially in a single pass without booting a web server.
+  - Designed specifically for automated chron execution via GitHub Actions.
+
+### 4.2. Multi-ATS Scraper Engine (`scraper.py`)
+- Acts as a dynamic orchestrator that crawls active companies **in parallel** using a `ThreadPoolExecutor` worker pool.
+- The concurrency limit is configurable via `maxConcurrentCompanies` (default: 6) to optimize CPU usage during parallel embedding generation.
+- Utilizes a global thread lock (`db_lock`) to synchronize SQLite database reads and writes safely, releasing the lock during network HTTP requests and CPU-heavy `model.encode()` embedding calculations to prevent database locks while maintaining maximum parallelism.
+- Instead of housing all scraping logic, it imports specific, highly-modular ATS adapters from the `backend/nlp_service/adapters/` directory (e.g., `workday.py`, `eightfold_v2.py`, `greenhouse.py`).
+- Respects `robots.txt` rules and rate limits for each site via centralized `utils.py` helpers.
+- **Fault Tolerance**: Safely catches network timeouts, HTTP errors, or `robots.txt` blocks to gracefully exit the specific company's extraction function without crashing the global loop, allowing the thread pool to immediately pick up the next company.
+- Directly invokes native site API endpoints (JSON REST services) to retrieve jobs, avoiding heavy headless browser instances.
+- For each job posting, it extracts matching skills from `skills_vocab.json` using word boundary regex patterns, parses the YoE requirements, and calculates vector representations using SentenceTransformers.
+- **Programmatic Filtering**: For custom HTML-scraped portals like ARM, the scraper reads the configured company location filters (e.g., India, UK, Europe) and filters the scraped jobs programmatically in Python since the portal does not support standard URL query parameters for these filters.
+
+
+### 4.3. Semantic Match Engine (`matcher.py`)
+- Computes matching between the user's resume vector and scraped jobs:
+  - **Weighted Similarity**:
+    $$\text{Score} = (\text{Cosine Similarity}_{\text{Summary vs Title}} \times 0.25) + (\text{Cosine Similarity}_{\text{Full Resume vs Description}} \times 0.55) + (\text{Skills Coverage Ratio} \times 0.20)$$
+  - **YoE Verification**: Determines if the job's minimum experience exceeds the user's configured experience.
+  - **Deduplication**: Inserts new matches into `matched_jobs` with `notified = 0`.
+  - **Location-Based Prioritized Sorting**: Groups matches prioritizing India-based jobs first (Rank 0), then United Kingdom and Europe (Rank 1), then Remote roles (Rank 2), then other regions (Rank 3), and sorts by score descending within each group.
+
+### 4.4. SMTP Email Digest Engine (`email_sender.py`)
+- Dispatches digests using Gmail SMTP.
+- Renders premium-styled HTML cards with Google Fonts, micro-elements, and status warning labels (`✅ Experience Match` or `⚠️ Experience Mismatch`).
+
+---
+
+## 5. Main Processing Flows
+
+### 5.1. Resume Import Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant import_resume.py
+    participant Model as SentenceTransformers
+    participant DB as SQLite DB
+    
+    User->>import_resume.py: Run setup.bat / import
+    import_resume.py->>import_resume.py: Read PDF bytes & Extract text
+    import_resume.py->>Model: Generate float vector
+    import_resume.py->>import_resume.py: Extract skill tokens matching vocabulary
+    import_resume.py->>DB: Hash deduplication, upsert to `user_resumes` & Clear old matches
+    import_resume.py-->>User: Console success message
+```
+
+### 5.2. Background Scraping & Matching Flow
+```mermaid
+sequenceDiagram
+    participant Loop as Background Loop
+    participant Scraper
+    participant Model as SentenceTransformers
+    participant Matcher
+    participant DB as SQLite DB
+    participant SMTP as SMTP Server
+    
+    Loop->>Scraper: Trigger 8-hour cycle
+    Scraper->>DB: Query active companies
+    loop Every Company
+        Scraper->>Scraper: Check robots.txt & Fetch API data
+        loop Every Job
+            Scraper->>DB: Insert new job (embedding_status = pending)
+        end
+    end
+    Scraper-->>Loop: Scrape cycle complete
+    Loop->>Enricher: Trigger Enrichment cycle
+    Enricher->>DB: Fetch pending jobs
+    loop Every Pending Job
+        Enricher->>Model: Encode Title & Description text
+        Enricher->>DB: Update job with embedding vectors (status = done)
+    end
+    Enricher-->>Loop: Enrichment complete
+    Loop->>Matcher: Trigger Match Cycle
+    Matcher->>DB: Query users and matching jobs
+    loop Every User
+        Matcher->>Matcher: Compute cosine similarities using NumPy
+        Matcher->>Matcher: Validate experience & Filter by threshold
+        Matcher->>DB: Insert pending matches (notified = 0)
+        Matcher->>DB: Query combined pending matches
+        Matcher->>Matcher: Sort: India first, then UK/Europe, then Remote, then others, DESC score
+        Matcher->>SMTP: Connect & send HTML digest
+        Matcher->>DB: Mark matched_jobs as notified = 1
+    end
+    Matcher-->>Loop: Matching complete
+```
+
+---
+
+## 6. Concurrency & Reliability Mitigations
+
+### 6.1. Thread-Safe Global Database Locking
+SQLite only allows a single writer transaction. To prevent `database is locked` errors during parallel scraping writes, the system uses a global Python `threading.Lock` (`db_lock`). 
+All connections are also instantiated with a timeout:
+```python
+conn = sqlite3.connect(db_path, timeout=30.0)
+```
+The lock is carefully managed to release during slow network HTTP requests and CPU-bound NLP model processing, ensuring maximum concurrency without sacrificing database integrity.
+
+### 6.2. Timezone Offset Normalization
+Dates scraped from ATS portals may contain timezone offsets (e.g. `+05:30` or `Z`). Python's `datetime.fromisoformat` parses these into offset-aware datetimes. To prevent `TypeError: can't compare offset-naive and offset-aware datetimes` during comparison checks, datetimes are normalized to naive representations:
+```python
+posted_dt = datetime.fromisoformat(s)
+if posted_dt.tzinfo is not None:
+    posted_dt = posted_dt.replace(tzinfo=None)
+```
+
+### 6.3. Database Size Mitigation (VACUUM)
+Because standard SQL `DELETE` commands do not reclaim storage space on disk in SQLite, a database file can grow indefinitely over time. To keep the database size small and avoid exceeding GitHub's 100 MB file limit, the system executes `VACUUM` at the end of the `run_cleanup` cycle, reclaiming unused space and shrinking the file size down to the actual volume of current data.
+
+### 6.4. Dual-Stack DNS Resolution Mitigation (IPv4 Force)
+To prevent network lookup failures (`NameResolutionError` / `[Errno 11001] getaddrinfo failed`) commonly encountered on Windows environments resolving hostnames (like `careers.arm.com` or `www-api.ibm.com`) under dual-stack IPv4/IPv6 networks, the system overrides `urllib3`'s socket connection handler:
+```python
+connection.allowed_gai_family = lambda: socket.AF_INET
+```
+This forces all outgoing scraping requests to resolve exclusively using IPv4, bypassing Windows IPv6 lookup issues.
+
+### 6.5. Scraper Auto-Recovery
+To prevent temporary network/DNS errors from causing permanent failures, the scraper fetches both `active` and `degraded` companies during the acquisition cycle:
+```sql
+SELECT * FROM companies WHERE status IN ('active', 'degraded')
+```
+This enables degraded scrapers to automatically retry and recover their status to `active` on the next execution cycle rather than requiring manual admin reactivation.
+
+
+### 6.6. Strict Bot Challenge & 403 Handling
+Adapters explicitly check HTTP status codes and raise Python exceptions on non-200 responses (such as Cloudflare bot challenges or WAF blocks). This prevents the scraper from silently parsing captcha pages as valid data, immediately flags the company as `degraded` in the SQLite database, and surfaces the exact error in the next email digest for manual review.

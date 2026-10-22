@@ -1,0 +1,43 @@
+# Dependency directories
+backend/node_modules/
+backend/nlp_service/venv_nlp/
+venv_nlp/
+venv/
+.venv/
+ENV/
+
+# Environment files (contains credentials)
+backend/.env
+
+# SQLite Databases & logs
+backend/data/*.db
+backend/data/*.db-journal
+backend/data/*.db-wal
+backend/data/*.db-shm
+backend/logs/*.log
+backend/logs/
+logs/
+
+# Uploads directory
+backend/uploads/
+
+# Personal resumes / scratch directories
+scratch/
+
+# IDE files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Python build artifacts
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# C++ Build artifacts
+backend/src/addon/build/
+build/
+Release/
+Debug/

@@ -1,0 +1,1390 @@
+[
+  {
+    "name": "AMD",
+    "ats": "amd",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.amd.com/careers-home/jobs",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "keywords": ""
+    }
+  },
+  {
+    "name": "Arista Networks",
+    "ats": "smartrecruiters",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://jobs.smartrecruiters.com/AristaNetworks",
+    "filters": {
+      "countries": [
+        "in"
+      ]
+    },
+    "smartRecruitersId": "AristaNetworks"
+  },
+  {
+    "name": "ARM",
+    "ats": "arm",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.arm.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ]
+    }
+  },
+  {
+    "name": "Broadcom",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://broadcom.wd1.myworkdayjobs.com/External_Career",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "broadcom",
+    "workdaySite": "External_Career",
+    "workdaySubdomain": "broadcom.wd1"
+  },
+  {
+    "name": "Cadence",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://cadence.wd1.myworkdayjobs.com/External_Careers",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "cadence",
+    "workdaySite": "External_Careers",
+    "workdaySubdomain": "cadence.wd1"
+  },
+  {
+    "name": "Celestica",
+    "ats": "successfactors",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.celestica.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ]
+    },
+    "sf_domain": "celestica"
+  },
+  {
+    "name": "Cerebras Systems",
+    "ats": "ashbyhq",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://cerebras.ai/careers",
+    "filters": {},
+    "board_token": "cerebras"
+  },
+  {
+    "name": "Cisco",
+    "ats": "cisco",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.cisco.com/global/en/search-results",
+    "filters": {
+      "keywords": "engineer",
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ]
+    }
+  },
+  {
+    "name": "Cloudflare",
+    "ats": "greenhouse",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://careers.cloudflare.com/jobs/",
+    "filters": {},
+    "board_token": "cloudflare"
+  },
+  {
+    "name": "Graphcore",
+    "ats": "greenhouse",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://www.graphcore.ai/careers",
+    "filters": {},
+    "board_token": "graphcore"
+  },
+  {
+    "name": "Intel",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "intel",
+    "workdaySite": "External",
+    "workdaySubdomain": "intel.wd1"
+  },
+  {
+    "name": "Juniper Networks",
+    "ats": "workday",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://careers.juniper.net/",
+    "filters": {},
+    "workdayTenant": "hpe",
+    "workdaySite": "Jobsathpe",
+    "workdaySubdomain": "hpe.wd5"
+  },
+  {
+    "name": "Keysight",
+    "ats": "jibe",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://jobs.keysight.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ]
+    },
+    "sf_domain": "keysight"
+  },
+  {
+    "name": "Marvell",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "marvell",
+    "workdaySite": "MarvellCareers",
+    "workdaySubdomain": "marvell.wd1"
+  },
+  {
+    "name": "Microchip",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://microchip.wd1.myworkdayjobs.com/Microchip_Careers",
+    "workdayTenant": "microchiphr",
+    "workdaySite": "External",
+    "workdaySubdomain": "microchip.wd5"
+  },
+  {
+    "name": "Micron",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://micron.wd1.myworkdayjobs.com/External",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "micron",
+    "workdaySite": "External",
+    "workdaySubdomain": "micron.wd1"
+  },
+  {
+    "name": "Microsoft",
+    "ats": "eightfold",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://careers.microsoft.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "query": ""
+    },
+    "eightfoldBaseUrl": "https://apply.careers.microsoft.com",
+    "eightfoldDomain": "microsoft.com"
+  },
+  {
+    "name": "Motorola Solutions",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "motorolasolutions",
+    "workdaySite": "Careers",
+    "workdaySubdomain": "motorolasolutions.wd5"
+  },
+  {
+    "name": "NetApp",
+    "ats": "eightfold_v2",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://careers.netapp.com/",
+    "filters": {},
+    "eightfoldBaseUrl": "https://netapp.eightfold.ai",
+    "eightfoldDomain": "netapp.com"
+  },
+  {
+    "name": "NVIDIA",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "nvidia",
+    "workdaySite": "NVIDIAExternalCareerSite",
+    "workdaySubdomain": "nvidia.wd5"
+  },
+  {
+    "name": "NXP Semiconductors",
+    "ats": "workday",
+    "tier": 3,
+    "enabled": true,
+    "careerUrl": "https://careers.nxp.com/",
+    "filters": {},
+    "workdayTenant": "nxp",
+    "workdaySite": "Careers",
+    "workdaySubdomain": "nxp.wd3"
+  },
+  {
+    "name": "Qualcomm",
+    "ats": "eightfold",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.qualcomm.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "query": ""
+    },
+    "eightfoldBaseUrl": "https://careers.qualcomm.com",
+    "eightfoldDomain": "qualcomm.com"
+  },
+  {
+    "name": "Samsung Research",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://sec.wd3.myworkdayjobs.com/Samsung_Careers",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "sec",
+    "workdaySite": "Samsung_Careers",
+    "workdaySubdomain": "sec.wd3"
+  },
+  {
+    "name": "Silicon Labs",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://silabs.wd1.myworkdayjobs.com/Careers",
+    "workdayTenant": "silabs",
+    "workdaySite": "SiliconLabsCareers",
+    "workdaySubdomain": "silabs.wd1"
+  },
+  {
+    "name": "Amazon (AWS)",
+    "ats": "unknown",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://amazon.jobs/",
+    "filters": {}
+  },
+  {
+    "name": "Apple",
+    "ats": "apple",
+    "tier": 1,
+    "enabled": false,
+    "careerUrl": "https://jobs.apple.com/",
+    "filters": {
+      "location": "India"
+    }
+  },
+  {
+    "name": "Ericsson",
+    "ats": "eightfold",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://jobs.ericsson.com",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "query": ""
+    },
+    "eightfoldBaseUrl": "https://jobs.ericsson.com",
+    "eightfoldDomain": "ericsson.com"
+  },
+  {
+    "name": "Google",
+    "ats": "playwright",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://www.google.com/about/careers/applications/jobs",
+    "filters": {}
+  },
+  {
+    "name": "Groq",
+    "ats": "unknown",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://groq.com/careers/",
+    "filters": {}
+  },
+  {
+    "name": "Hewlett Packard Enterprise",
+    "ats": "workday",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://careers.hpe.com/",
+    "filters": {},
+    "workdayTenant": "hpe",
+    "workdaySite": "Jobsathpe",
+    "workdaySubdomain": "hpe.wd5"
+  },
+  {
+    "name": "IBM",
+    "ats": "ibm",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://www.ibm.com/careers",
+    "filters": {
+      "countries": [
+        "India"
+      ],
+      "category": "Engineering/Technical"
+    }
+  },
+  {
+    "name": "MediaTek",
+    "ats": "mediatek",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://careers.mediatek.com",
+    "filters": {}
+  },
+  {
+    "name": "Meta",
+    "ats": "unknown",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://www.metacareers.com/jobs",
+    "filters": {}
+  },
+  {
+    "name": "Nokia",
+    "ats": "unknown",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://careers.nokia.com/",
+    "filters": {}
+  },
+  {
+    "name": "Synopsys",
+    "ats": "avature",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://synopsys.avature.net/careers",
+    "filters": {
+      "locations": [
+        "Bangalore",
+        "Bengaluru",
+        "Hyderabad",
+        "Pune"
+      ],
+      "searchText": ""
+    }
+  },
+  {
+    "name": "Tenstorrent",
+    "ats": "unknown",
+    "tier": 3,
+    "enabled": false,
+    "careerUrl": "https://tenstorrent.com/careers",
+    "filters": {}
+  },
+  {
+    "name": "Texas Instruments",
+    "ats": "ti",
+    "tier": 2,
+    "enabled": false,
+    "careerUrl": "https://careers.ti.com",
+    "filters": {}
+  },
+
+  {
+    "name": "Accenture",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.accenture.com/in-en/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "accenture",
+    "workdaySite": "AccentureJobs",
+    "workdaySubdomain": "accenture.wd3"
+  },
+  {
+    "name": "Deloitte",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://jobs2.deloitte.com/in/en",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "deloitte",
+    "workdaySite": "Deloitte",
+    "workdaySubdomain": "deloitte.wd5"
+  },
+  {
+    "name": "EY (Ernst & Young)",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.ey.com/ey/jobs",
+    "filters": {
+      "locations": ["India"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "ey",
+    "workdaySite": "ey",
+    "workdaySubdomain": "ey.wd5"
+  },
+  {
+    "name": "KPMG",
+    "ats": "greenhouse",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://home.kpmg/in/en/home/careers.html",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi"]
+    },
+    "board_token": "kpmg"
+  },
+  {
+    "name": "PwC",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.pwc.com/gx/en/careers.html",
+    "filters": {
+      "locations": ["India"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "pwc",
+    "workdaySite": "Global",
+    "workdaySubdomain": "pwc.wd3"
+  },
+  {
+    "name": "Capgemini",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.capgemini.com/in-en/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Delhi"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "capgemini",
+    "workdaySite": "Capgemini",
+    "workdaySubdomain": "capgemini.wd3"
+  },
+  {
+    "name": "Cognizant",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.cognizant.com/global/en",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "cognizant",
+    "workdaySite": "CognizantCareers",
+    "workdaySubdomain": "cognizant.wd1"
+  },
+  {
+    "name": "Infosys",
+    "ats": "unknown",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://career.infosys.com/joblist",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"]
+    }
+  },
+  {
+    "name": "TCS (Tata Consultancy Services)",
+    "ats": "unknown",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.tcs.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"]
+    }
+  },
+  {
+    "name": "Wipro",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.wipro.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "wipro",
+    "workdaySite": "wiproexternalcareersite",
+    "workdaySubdomain": "wipro.wd3"
+  },
+  {
+    "name": "HCLTech",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.hcltech.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai", "Noida"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "hcl",
+    "workdaySite": "HCLCareers",
+    "workdaySubdomain": "hcl.wd3"
+  },
+  {
+    "name": "Tech Mahindra",
+    "ats": "unknown",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.techmahindra.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"]
+    }
+  },
+  {
+    "name": "LTIMindtree",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.ltimindtree.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "ltimindtree",
+    "workdaySite": "LTIMindtreeCareers",
+    "workdaySubdomain": "ltimindtree.wd3"
+  },
+  {
+    "name": "Persistent Systems",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.persistent.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "persistent",
+    "workdaySite": "PersistentCareers",
+    "workdaySubdomain": "persistent.wd5"
+  },
+  {
+    "name": "Zensar Technologies",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.zensar.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai"]
+    }
+  },
+  {
+    "name": "Thoughtworks",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.thoughtworks.com/careers",
+    "filters": {
+      "locations": ["India"]
+    },
+    "board_token": "thoughtworks"
+  },
+  {
+    "name": "Publicis Sapient",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.publicissapient.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Gurgaon", "Delhi", "Mumbai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "publicissapient",
+    "workdaySite": "PublicisSapient",
+    "workdaySubdomain": "publicissapient.wd3"
+  },
+  {
+    "name": "EXL Service",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.exlservice.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Delhi", "Noida"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "exlservice",
+    "workdaySite": "EXLCareers",
+    "workdaySubdomain": "exlservice.wd5"
+  },
+  {
+    "name": "Genpact",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.genpact.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Delhi", "Noida"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "genpact",
+    "workdaySite": "Genpact",
+    "workdaySubdomain": "genpact.wd1"
+  },
+  {
+    "name": "WNS Global Services",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.wns.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai"]
+    }
+  },
+  {
+    "name": "Fractal Analytics",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://fractal.ai/careers/",
+    "filters": {
+      "locations": ["India"]
+    },
+    "board_token": "fractal"
+  },
+  {
+    "name": "Tiger Analytics",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.tigeranalytics.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Chennai"]
+    }
+  },
+  {
+    "name": "LatentView Analytics",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.latentview.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Chennai", "Hyderabad"]
+    }
+  },
+  {
+    "name": "Mu Sigma",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.mu-sigma.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Amazon",
+    "ats": "amazon",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://amazon.jobs/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Chennai"],
+      "keywords": ""
+    }
+  },
+  {
+    "name": "Google",
+    "ats": "google",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.google.com/about/careers/applications/jobs",
+    "filters": {
+      "locations": ["India"],
+      "query": ""
+    }
+  },
+  {
+    "name": "Walmart Global Tech",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.walmart.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "walmart",
+    "workdaySite": "WalmartExternal",
+    "workdaySubdomain": "walmart.wd5"
+  },
+  {
+    "name": "Oracle",
+    "ats": "oracle",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.oracle.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune"],
+      "keywords": ""
+    }
+  },
+  {
+    "name": "SAP",
+    "ats": "successfactors",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://jobs.sap.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai"]
+    },
+    "sf_domain": "sap"
+  },
+  {
+    "name": "Adobe",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.adobe.com/careers.html",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Noida"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "adobe",
+    "workdaySite": "external",
+    "workdaySubdomain": "adobe.wd5"
+  },
+  {
+    "name": "Salesforce",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.salesforce.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "salesforce",
+    "workdaySite": "External",
+    "workdaySubdomain": "salesforce.wd12"
+  },
+  {
+    "name": "Uber",
+    "ats": "greenhouse",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.uber.com/us/en/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad"]
+    },
+    "board_token": "uber"
+  },
+  {
+    "name": "JPMorgan Chase",
+    "ats": "jpmorganchase",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.jpmorgan.com/global/en/home",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Mumbai"],
+      "keywords": ""
+    }
+  },
+  {
+    "name": "Goldman Sachs",
+    "ats": "goldman",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.goldmansachs.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad"],
+      "keywords": ""
+    }
+  },
+  {
+    "name": "Morgan Stanley",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.morganstanley.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Mumbai"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "morganstanley",
+    "workdaySite": "Careers",
+    "workdaySubdomain": "morganstanley.wd1"
+  },
+  {
+    "name": "Barclays",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://search.jobs.barclays/",
+    "filters": {
+      "locations": ["Pune", "Noida"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "barclays",
+    "workdaySite": "barclaysglobal",
+    "workdaySubdomain": "barclays.wd3"
+  },
+  {
+    "name": "Citi",
+    "ats": "eightfold",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://jobs.citi.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Mumbai", "Chennai"],
+      "query": ""
+    },
+    "eightfoldBaseUrl": "https://citi.eightfold.ai",
+    "eightfoldDomain": "citi.com"
+  },
+  {
+    "name": "Deutsche Bank",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.db.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Pune"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "deutschebank",
+    "workdaySite": "ExternalSite",
+    "workdaySubdomain": "deutschebank.wd3"
+  },
+  {
+    "name": "American Express",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://aexp.eightfold.ai/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Gurgaon"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "aexp",
+    "workdaySite": "ExternalCareers",
+    "workdaySubdomain": "aexp.wd5"
+  },
+  {
+    "name": "Mastercard",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://careers.mastercard.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Pune"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "mastercard",
+    "workdaySite": "MastercardCareers",
+    "workdaySubdomain": "mastercard.wd1"
+  },
+  {
+    "name": "Visa",
+    "ats": "workday",
+    "tier": 1,
+    "enabled": true,
+    "careerUrl": "https://www.visa.com/careers.html",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Pune"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "visa",
+    "workdaySite": "Visa",
+    "workdaySubdomain": "visa.wd5"
+  },
+  {
+    "name": "Bosch",
+    "ats": "successfactors",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.bosch.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune", "Coimbatore"]
+    },
+    "sf_domain": "bosch"
+  },
+  {
+    "name": "Siemens",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://jobs.siemens.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru", "Hyderabad", "Pune"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "siemens",
+    "workdaySite": "SiemensCareers",
+    "workdaySubdomain": "siemens.wd3"
+  },
+
+  {
+    "name": "Razorpay",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://razorpay.com/jobs/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "lever_company": "razorpay"
+  },
+  {
+    "name": "PhonePe",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.phonepe.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "phonepe"
+  },
+  {
+    "name": "CRED",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.cred.club/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "lever_company": "cred"
+  },
+  {
+    "name": "Groww",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://groww.in/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Zerodha",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://zerodha.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Juspay",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://juspay.in/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Pine Labs",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.pinelabs.com/careers",
+    "filters": {
+      "locations": ["Noida", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "pinelabs"
+  },
+  {
+    "name": "Swiggy",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.swiggy.com/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "swiggy"
+  },
+  {
+    "name": "Zomato",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.zomato.com/careers",
+    "filters": {
+      "locations": ["Gurgaon", "Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Zepto",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.zeptonow.com/careers",
+    "filters": {
+      "locations": ["Mumbai", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "zepto"
+  },
+  {
+    "name": "Meesho",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://meesho.io/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "meesho"
+  },
+  {
+    "name": "Nykaa",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.nykaa.com/",
+    "filters": {
+      "locations": ["Mumbai", "Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Lenskart",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.lenskart.com/careers.html",
+    "filters": {
+      "locations": ["Noida", "Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Urban Company",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.urbancompany.com/",
+    "filters": {
+      "locations": ["Gurgaon", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "urbancompany"
+  },
+  {
+    "name": "Rapido",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://rapido.bike/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "Delhivery",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.delhivery.com/careers",
+    "filters": {
+      "locations": ["Gurgaon", "Bangalore", "Bengaluru", "Delhi"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "delhivery",
+    "workdaySite": "DelhiveryCareers",
+    "workdaySubdomain": "delhivery.wd3"
+  },
+  {
+    "name": "Cars24",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.cars24.com/careers/",
+    "filters": {
+      "locations": ["Gurgaon", "Bangalore", "Bengaluru"]
+    }
+  },
+  {
+    "name": "ShareChat",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://sharechat.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "sharechat"
+  },
+  {
+    "name": "Dream11",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://careers.dream11.com/",
+    "filters": {
+      "locations": ["Mumbai"]
+    }
+  },
+  {
+    "name": "Freshworks",
+    "ats": "workday",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.freshworks.com/company/careers/",
+    "filters": {
+      "locations": ["Chennai", "Bangalore", "Bengaluru", "Hyderabad"],
+      "searchText": "",
+      "limit": 20
+    },
+    "workdayTenant": "freshworks",
+    "workdaySite": "External",
+    "workdaySubdomain": "freshworks.wd1"
+  },
+  {
+    "name": "Postman",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.postman.com/company/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "postman"
+  },
+  {
+    "name": "BrowserStack",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.browserstack.com/careers",
+    "filters": {
+      "locations": ["Mumbai", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "browserstack"
+  },
+  {
+    "name": "Sprinklr",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.sprinklr.com/careers/",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "sprinklr"
+  },
+  {
+    "name": "Atlan",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://atlan.com/careers/",
+    "filters": {
+      "locations": ["Delhi", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "atlan"
+  },
+  {
+    "name": "Innovaccer",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://innovaccer.com/company/careers/",
+    "filters": {
+      "locations": ["Noida", "Delhi"]
+    },
+    "lever_company": "innovaccer"
+  },
+  {
+    "name": "Observe.AI",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.observe.ai/company/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "observeai"
+  },
+  {
+    "name": "Uniphore",
+    "ats": "greenhouse",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.uniphore.com/company/careers/",
+    "filters": {
+      "locations": ["Chennai", "Bangalore", "Bengaluru"]
+    },
+    "board_token": "uniphore"
+  },
+  {
+    "name": "Gupshup",
+    "ats": "lever",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.gupshup.io/company/careers",
+    "filters": {
+      "locations": ["Mumbai", "Bangalore", "Bengaluru"]
+    },
+    "lever_company": "gupshup"
+  },
+  {
+    "name": "Sarvam AI",
+    "ats": "ashbyhq",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://www.sarvam.ai/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    },
+    "board_token": "sarvamai"
+  },
+  {
+    "name": "Krutrim",
+    "ats": "unknown",
+    "tier": 2,
+    "enabled": true,
+    "careerUrl": "https://krutrim.com/careers",
+    "filters": {
+      "locations": ["Bangalore", "Bengaluru"]
+    }
+  }
+]

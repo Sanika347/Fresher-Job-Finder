@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fresherjobfinder"
+version = "0.1.0"
+description = "fresherjobfinder and Matcher"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "requests",
+    "beautifulsoup4",
+    "sentence-transformers",
+    "numpy",
+    "loguru"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*"]
